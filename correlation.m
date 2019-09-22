@@ -13,7 +13,6 @@ y = zeros(1,length(x)+length(h)-1);
 begt = xt(1)+ht(1);
 endt = xt(length(x)) + ht(length(h));
 t = [begt:endt];
-disp(t);
 for i = 1:length(h)
     for j = 1:length(x)
         y(i+j-1) = y(i+j-1) + temp(i,j);
