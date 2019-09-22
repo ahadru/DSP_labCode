@@ -5,8 +5,9 @@ clc;
 x = [2 1 -1 3]
 h = [1 0 1 1]
 
-xt = -3:0;
+xt = -2:1;
 ht = -1:2;
+
 temp = x.'.*h;
 y = zeros(1,length(x)+length(h)-1);
 begt = xt(1)+ht(1);

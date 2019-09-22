@@ -8,6 +8,7 @@ h = flip(h);
 
 xt = -3:0;
 ht = -1:2;
+
 temp = x.'.*h;
 y = zeros(1,length(x)+length(h)-1);
 begt = xt(1)+ht(1);
