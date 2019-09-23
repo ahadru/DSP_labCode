@@ -1,23 +1,28 @@
-% A GENERALAZED CONVOLUTION COMPUTING CODE IN MATLAB WITHOUT USING MATLAB BUILTIN FUNCTION conv(x,h)
-close all
-clear all
-x = [2 1 -1 3]
-h = [1 0 1 1]
-m=length(x);
-n=length(h);
-X=[x,zeros(1,n)];
-H=[h,zeros(1,m)];
-for i=1:n+m-1
-    Y(i)=0;
-    for j=1:m
-        if(i-j+1>0)
-            Y(i)=Y(i)+X(j)*H(i-j+1);
-        else
-        end
-    end
+F = 1000; F1 = 2000; F3 = 3000;
+Fs = 8000; %sampling rate
+dt = 1/Fs; %sampling time
+n = 31; %number of dft point or sample number
+t = 0:dt:n*dt; %total time
+signal = sin(2*pi*F*t) + 0.5*sin(2*pi*F1*t + (3*pi)/4) + cos(2*pi*F3*t); 
+
+subplot(211);
+stem(t,signal);
+
+N = length(t);
+
+n = 0:N-1;
+
+w = zeros(1,N);
+
+for i=0:N-1
+  w(i+1) = 0.5 - 0.5*cos(2*pi*(i)/N);
 end
-Y
-stem(Y);
-ylabel('Y[n]');
-xlabel('----->n');
-title('Convolution of Two Signals without conv function');
+
+%disp(length(signal));
+%disp(length(w));
+%disp(length(t));
+ws = signal.*w;
+disp(ws);
+
+subplot(212);
+stem(t,ws);
